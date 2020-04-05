@@ -17,6 +17,7 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
     private ArrayList<String> target;
     private ArrayAdapter adapter;
+    //TODO
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
