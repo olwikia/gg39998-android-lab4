@@ -8,18 +8,20 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="409dp"
-        android:layout_height="742dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/water"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <EditText
             android:id="@+id/editText"
             android:layout_width="238dp"
             android:layout_height="32dp"
-            android:layout_marginTop="283dp"
-            android:layout_marginBottom="16dp"
             android:background="#FFFFFF"
             android:ems="10"
             android:inputType="textPersonName"
@@ -27,21 +29,20 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintBottom_toTopOf="@+id/button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.222"
+            app:layout_constraintHorizontal_bias="0.393"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/button"
-            android:layout_width="207dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="366dp"
+            android:layout_width="201dp"
+            android:layout_height="44dp"
             android:onClick="wyslij"
             android:text="Wyślij"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.272"
+            app:layout_constraintHorizontal_bias="0.442"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
