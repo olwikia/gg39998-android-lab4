@@ -2,6 +2,8 @@ package com.example.gg39998_android_lab4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -48,7 +50,24 @@ public class MainActivity extends AppCompatActivity {
                 intencja.putExtra("element", zwierz);
                 startActivityForResult(intencja, 2);
         } });
+        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                //Toast.makeText(getApplicationContext(), "Jesteś pewien że chcesz usunąć numer " +id, Toast.LENGTH_LONG).show();
+
+                showAlertDialogButtonClicked(view, String.valueOf(id));
+
+                //db.usun((String.valueOf(id)));
+                //adapter.changeCursor(db.lista());
+                return true;
+
+            }
+        });
     }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
@@ -76,5 +95,27 @@ public class MainActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
        // }
     }
+
+
+    public void showAlertDialogButtonClicked(View view, final String id) {
+        // setup the alert builder
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Ostrzeżenie");
+        builder.setMessage("Czy na pewno chcesz usunąć tę pozycję?");
+        // add the buttons
+        builder.setPositiveButton("Potwierdzam", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int whichButton) {
+                db.usun((String.valueOf(id)));
+                adapter.changeCursor(db.lista());
+                dialog.dismiss();
+            } });
+        builder.setNegativeButton("Rezygnuje", null);
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+
 
 }

@@ -21,8 +21,8 @@ public class MySQLite extends SQLiteOpenHelper {
                 "(_id integer primary key autoincrement," +
                 "gatunek text not null," +
                 "kolor text not null," +
-                "wielkosc real not null," +
-                "opis text not null);";
+                "wielkosc real not null,"
+                + "opis text not null);";
         database.execSQL(DATABASE_CREATE);
     }
 
