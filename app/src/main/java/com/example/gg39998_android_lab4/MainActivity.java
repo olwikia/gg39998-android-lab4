@@ -7,10 +7,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +36,18 @@ public class MainActivity extends AppCompatActivity {
         //this.adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, this.target);
         ListView listview = (ListView) findViewById(R.id.listView);
         listview.setAdapter(this.adapter);
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View view, int pos, long id) {
+               // Toast.makeText(getApplicationContext(), "test "+ pos, Toast.LENGTH_SHORT).show();
+                TextView name = (TextView) view.findViewById(android.R.id.text1);
+                Animal zwierz = db.pobierz(Integer.parseInt (name.getText().toString()));
+                Intent intencja = new Intent(getApplicationContext(), DodajWpis.class);
+                intencja.putExtra("element", zwierz);
+                startActivityForResult(intencja, 2);
+        } });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -46,16 +62,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode==RESULT_OK){
+        //if (requestCode == 1 && resultCode==RESULT_OK){
             Bundle extras = data.getExtras();
             //String nowy =  (String) extras.get("wpis");
             //target.add(nowy);
             Animal nowy = (Animal) extras.getSerializable("nowy");
+            Toast.makeText(getApplicationContext(), "test ", Toast.LENGTH_SHORT).show();
+            this.db.aktualizuj(nowy);
             this.db.dodaj(nowy);
+
 
             adapter.changeCursor(db.lista());
             adapter.notifyDataSetChanged();
-        }
+       // }
     }
 
 }
