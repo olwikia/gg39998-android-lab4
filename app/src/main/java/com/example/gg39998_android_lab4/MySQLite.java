@@ -17,7 +17,12 @@ public class MySQLite extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database){
-        String DATABASE_CREATE = "create table animals " + "(_id integer primary key autoincrement," + "gatunek text not null," + "kolor text not null," + "wielkosc real not null," + "opis text not null);";
+        String DATABASE_CREATE = "create table animals " +
+                "(_id integer primary key autoincrement," +
+                "gatunek text not null," +
+                "kolor text not null," +
+                "wielkosc real not null," +
+                "opis text not null);";
         database.execSQL(DATABASE_CREATE);
     }
 

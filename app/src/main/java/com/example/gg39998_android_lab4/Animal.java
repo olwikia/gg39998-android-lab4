@@ -12,7 +12,7 @@ public class Animal implements Serializable {
 
     public Animal () {}
 
-    public Animal(String gtunek, String kolor, float wielkosc, String opis){
+    public Animal(String gatunek, String kolor, float wielkosc, String opis){
         this.gatunek = gatunek;
         this.kolor  = kolor;
         this.wielkosc = wielkosc;
