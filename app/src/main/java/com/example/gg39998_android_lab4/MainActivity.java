@@ -18,6 +18,8 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -86,10 +88,17 @@ public class MainActivity extends AppCompatActivity {
             //String nowy =  (String) extras.get("wpis");
             //target.add(nowy);
             Animal nowy = (Animal) extras.getSerializable("nowy");
-            Toast.makeText(getApplicationContext(), "test ", Toast.LENGTH_SHORT).show();
-            this.db.aktualizuj(nowy);
-            this.db.dodaj(nowy);
 
+
+            if (requestCode == 2){
+                this.db.aktualizuj(nowy);
+                Toast.makeText(this, "wpis zaaktualizowano ", Toast.LENGTH_LONG).show();
+            }
+            else if (requestCode == 1){
+                this.db.dodaj(nowy);
+                Toast.makeText(getApplicationContext(), "dodano wpis ", Toast.LENGTH_LONG).show();
+
+            }
 
             adapter.changeCursor(db.lista());
             adapter.notifyDataSetChanged();
