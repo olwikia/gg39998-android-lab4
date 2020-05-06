@@ -42,7 +42,6 @@ public class DodajWpis extends AppCompatActivity {
 
     }
     public void wyslij(View view){
-
        // EditText kolor = (EditText) findViewById (R.id.kolor);
         //EditText wielkosc = (EditText) findViewById (R.id.wielkosc);
        // EditText opis = (EditText) findViewById (R.id.opis);
