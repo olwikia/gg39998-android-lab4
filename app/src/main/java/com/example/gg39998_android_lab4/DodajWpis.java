@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ public class DodajWpis extends AppCompatActivity {
                 EditText kolor = (EditText) findViewById(R.id.kolor);
                 EditText wielkosc = (EditText) findViewById(R.id.wielkosc);
                 EditText opis = (EditText) findViewById(R.id.opis);
+
                 kolor.setText(zwierz.getKolor());
                 wielkosc.setText( Float.toString(zwierz.getWielkosc()));
                 opis.setText(zwierz.getOpis());
@@ -40,15 +42,40 @@ public class DodajWpis extends AppCompatActivity {
 
     }
     public void wyslij(View view){
-        EditText kolor = (EditText) findViewById (R.id.kolor);
-        EditText wielkosc = (EditText) findViewById (R.id.wielkosc);
-        EditText opis = (EditText) findViewById (R.id.opis);
-        Spinner gatunek = (Spinner) findViewById (R.id.gatunek);
-        Animal zwierze = new Animal( gatunek.getSelectedItem().toString(), kolor.getText().toString(), Float.valueOf(wielkosc.getText().toString()), opis.getText().toString() );
 
-        zwierze.setId(this.modyfi_id);
+       // EditText kolor = (EditText) findViewById (R.id.kolor);
+        //EditText wielkosc = (EditText) findViewById (R.id.wielkosc);
+       // EditText opis = (EditText) findViewById (R.id.opis);
+       // Spinner gatunek = (Spinner) findViewById (R.id.gatunek);
+       // Animal zwierze = new Animal( gatunek.getSelectedItem().toString(), kolor.getText().toString(), Float.valueOf(wielkosc.getText().toString()), opis.getText().toString() );
+
+        try {
+            EditText kolor = (EditText) findViewById (R.id.kolor);
+            EditText wielkosc = (EditText) findViewById (R.id.wielkosc);
+            EditText opis = (EditText) findViewById (R.id.opis);
+            Spinner gatunek = (Spinner) findViewById (R.id.gatunek);
+            Animal zwierze = new Animal( gatunek.getSelectedItem().toString(), kolor.getText().toString(), Float.valueOf(wielkosc.getText().toString()), opis.getText().toString() );
+            if(kolor.getText().toString().equals("")){
+                Toast.makeText(getApplicationContext(), "musisz podać kolor", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            else if(opis.getText().toString().equals("")){
+                Toast.makeText(getApplicationContext(), "musisz wprowadzić opis", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            zwierze.setId(this.modyfi_id);
+            //Toast.makeText(getApplicationContext(), "test "+ this.modyfi_id, Toast.LENGTH_SHORT).show();
+            Intent intencja = new Intent(); intencja.putExtra("nowy", zwierze);
+            setResult(RESULT_OK, intencja); finish();
+        }
+        catch(NumberFormatException ex) {
+            Toast.makeText(getApplicationContext(), "musisz podać wielkość", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        //zwierze.setId(this.modyfi_id);
         //Toast.makeText(getApplicationContext(), "test "+ this.modyfi_id, Toast.LENGTH_SHORT).show();
-        Intent intencja = new Intent(); intencja.putExtra("nowy", zwierze);
-        setResult(RESULT_OK, intencja); finish();
+       // Intent intencja = new Intent(); intencja.putExtra("nowy", zwierze);
+       // setResult(RESULT_OK, intencja); finish();
     }
 }

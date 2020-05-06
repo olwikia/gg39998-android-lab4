@@ -36,6 +36,7 @@ public class MySQLite extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("gatunek", zwierz.getGatunek());
         values.put("kolor", zwierz.getKolor());
+
         values.put("wielkosc", zwierz.getWielkosc());
         values.put("opis", zwierz.getOpis());
 
